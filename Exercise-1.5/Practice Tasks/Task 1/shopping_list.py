@@ -17,7 +17,26 @@ class ShoppingList(object):
         for item in self.shopping_list:
             print(f"- {item}")
 
-pet_store_list = ShoppingList("Pet Store Shopping List")
+    def merge_lists(self, obj):
+        merged_lists_name = 'Merged List - ' + str(self.list_name) + " + " + str(obj.list_name)
+        
+        merged_lists_obj = ShoppingList(merged_lists_name)
+        merged_lists_obj.shopping_list = self.shopping_list.copy()
+
+        for item in obj.shopping_list:
+            if not item in merged_lists_obj.shopping_list:
+              merged_lists_obj.shopping_list.append(item)
+
+        return merged_lists_obj
+
+pet_store_list = ShoppingList('Pet Store List')
+grocery_store_list = ShoppingList('Grocery Store List')
+
+for item in ['dog food', 'frisbee', 'bowl', 'collars', 'flea collars']:
+    pet_store_list.add_item(item)
+
+for item in ['fruits' ,'vegetables', 'bowl', 'ice cream']:
+    grocery_store_list.add_item(item)
 
 # Add items
 pet_store_list.add_item("dog food")
